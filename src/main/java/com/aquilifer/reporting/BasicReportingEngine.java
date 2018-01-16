@@ -27,11 +27,6 @@ public class BasicReportingEngine implements ReportingEngine {
         new BasicReportingEngine().generatePDF(JSON_FILE);
     }
 
-    public void generatePDF(File json) {
-        String html = templateService.processHMTLTemplate(TEMPLATE_NAME, jsonParser.parse(json));
-        doGeneratePDF(html);
-    }
-
     public void generatePDF(String jsonPath) {
         String html = templateService.processHMTLTemplate(TEMPLATE_NAME, jsonParser.parse(jsonPath));
         doGeneratePDF(html);

@@ -5,7 +5,7 @@
         <meta charset="UTF-8"/>
         <title th:text="${title}">Hello, World!</title>
         <style>
-            #user-table {
+            .user-table {
                 width: 100%;
                 border-spacing: 0;
             }
@@ -19,11 +19,29 @@
                 width: 300px;
                 height: 300px;
             }
+            .force-page-break-after {
+                page-break-after: always;
+            }
+            .force-page-break-before {
+                page-break-before: always;
+            }
+            .force-page-break-inside {
+                page-break-before: always;
+            }
+            .avoid-page-break-after {
+                page-break-after: avoid;
+            }
+            .avoid-page-break-before {
+                page-break-before: avoid;
+            }
+            .avoid-page-break-inside {
+                page-break-before: avoid;
+            }
         </style>
     </head>
     <body>
         <h1 th:text="${title}">...</h1>
-        <table id="user-table">
+        <table class="user-table">
             <tr th:each="user,iterStat : ${users}" th:class="${iterStat.odd}? 'odd'">
                 <td th:text="${user.id}">...</td>
                 <td th:text="${user.first_name}">...</td>
@@ -36,5 +54,20 @@
 
         <h1 th:text="${svg_title}">...</h1>
         <div id="svg-image" class="media" data-type="svg" data-src="logo.svg" />
+        <h1 th:text="${page_break_before_title}" class="force-page-break-before">...</h1>
+        <h1 th:text="${page_break_after_title}" class="force-page-break-after">...</h1>
+
+        <h1 th:text="${page_break_inside_title}">...</h1>
+        <table class="user-table">
+            <tr th:each="user,iterStat : ${two_users}" th:class="${iterStat.odd}? 'odd':'force-page-break-inside'">
+                <td th:text="${user.id}">...</td>
+                <td th:text="${user.first_name}">...</td>
+                <td th:text="${user.last_name}">...</td>
+                <td th:text="${user.email}">...</td>
+                <td th:text="${user.gender}">...</td>
+                <td th:text="${user.ip_address}">...</td>
+            </tr>
+        </table>
+
     </body>
 </html>
